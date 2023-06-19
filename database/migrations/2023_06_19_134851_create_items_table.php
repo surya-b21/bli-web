@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('sku');
+            $table->string('nama');
+            $table->float('harga');
+            $table->integer('stok');
         });
     }
 
