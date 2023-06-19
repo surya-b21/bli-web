@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->float('harga');
             $table->integer('stok');
+            $table->string('unit_of_material');
         });
     }
 

@@ -15,12 +15,15 @@ class RoleSeeder extends Seeder
     {
         $data = [
             [
+                "id" => 1,
                 "nama" => "Kasir"
             ],
             [
+                "id" => 2,
                 "nama" => "Admin Stock"
             ],
             [
+                "id" => 3,
                 "nama" => "Superadmin"
             ]
         ];

@@ -18,13 +18,15 @@ class ItemSeeder extends Seeder
                 'sku' => rand(1000000, 9999999),
                 'nama' => 'Kaca',
                 'harga' => 100000,
-                'stok' => 1000
+                'stok' => 1000,
+                'unit_of_material' => 'pcs'
             ],
             [
                 'sku' => rand(1000000, 9999999),
                 'nama' => 'Kran Besi',
                 'harga' => 150000,
-                'stok' => 1000
+                'stok' => 1000,
+                'unit_of_material' => 'pcs'
             ],
         ];
 

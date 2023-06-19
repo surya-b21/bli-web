@@ -13,6 +13,7 @@ class Item extends Model
         'sku',
         'nama',
         'harga',
-        'stok'
+        'stok',
+        'unit_of_material'
     ];
 }
