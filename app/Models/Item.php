@@ -16,4 +16,9 @@ class Item extends Model
         'stok',
         'unit_of_material'
     ];
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }

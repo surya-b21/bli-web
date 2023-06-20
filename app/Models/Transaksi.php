@@ -10,4 +10,16 @@ class Transaksi extends Model
     use HasFactory;
 
     protected $table = 'transaksi';
+
+    protected $fillable = [
+        'sort',
+        'item_id',
+        'qty',
+        'harga_setelah_pajak',
+    ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

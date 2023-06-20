@@ -36,3 +36,7 @@ Route::middleware('superadmin')->controller(App\Http\Controllers\UserController:
     Route::get('/delete/{id}', 'delete')->name('delete');
     Route::post('/data', 'getData')->name('data');
 });
+
+Route::middleware('kasir')->controller(App\Http\Controllers\TransaksiController::class)->prefix('transaksi')->name('transaksi.')->group(function () {
+    Route::get('/', 'index')->name('index');
+});

@@ -52,6 +52,7 @@
                             <li class="nav-item dropdown d-flex">
                                 @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                                     <a class="nav-link" href="{{ route('item.index') }}">Item</a>
+                                    <a class="nav-link" href="{{ route('transaksi.index') }}">Transaksi</a>
                                 @endif
                                 @if (Auth::user()->role_id == 3)
                                     <a class="nav-link" href="{{ route('user.index') }}">Manajemen User</a>
