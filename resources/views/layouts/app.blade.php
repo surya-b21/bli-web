@@ -53,6 +53,9 @@
                                 @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                                     <a class="nav-link" href="{{ route('item.index') }}">Item</a>
                                 @endif
+                                @if (Auth::user()->role_id == 3)
+                                    <a class="nav-link" href="{{ route('user.index') }}">Manajemen User</a>
+                                @endif
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
