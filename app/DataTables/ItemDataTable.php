@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Item;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -22,7 +23,10 @@ class ItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', '<div class="d-flex"><a class="btn btn-warning mx-1" href="#">Edit</a>  <a class="btn btn-danger mx-1" href="#">Delete</a></div>')
+            ->addColumn('action', function ($row) {
+                $actionBtn = Auth::user()->role_id == 3 ? '<div class="d-flex"><button class="btn btn-warning mx-1" id="edit" data-id="' . $row->id . '" data-url="' . route('item.update', $row->id) . '" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>  <a class="btn btn-danger mx-1" href="' . route('item.delete', $row->id) . '" id="delete">Delete</a></div>' : '<div class="d-flex"><button class="btn btn-warning mx-1" id="edit" data-id="' . $row->id . '" data-url="' . route('item.update', $row->id) . '" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Stock</button></div>';
+                return $actionBtn;
+            })
             ->setRowId('id');
     }
 

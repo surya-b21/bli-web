@@ -24,4 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('kasir')->controller(App\Http\Controllers\ItemController::class)->prefix('item')->name('item.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/store', 'store')->name('store');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::get('/delete/{id}', 'delete')->name('delete');
+    Route::post('/data', 'getData')->name('data');
 });
