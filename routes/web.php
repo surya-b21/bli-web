@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('kasir')->controller(App\Http\Controllers\ItemController::class)->prefix('item')->name('item.')->group(function () {
+    Route::get('/', 'index')->name('index');
+});
