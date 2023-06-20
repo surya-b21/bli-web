@@ -43,7 +43,7 @@ class ItemDataTable extends DataTable
             ->setTableId('item-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->buttons([
                 // Button::make('excel'),
                 // Button::make('csv'),
@@ -52,7 +52,7 @@ class ItemDataTable extends DataTable
                 Button::make('reset'),
                 Button::make('reload')
             ])
-            ->orderBy(1);
+            ->orderBy(1, 'asc');
         // ->selectStyleSingle();
     }
 
@@ -62,9 +62,11 @@ class ItemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('sku'),
+            Column::make('sku')
+                ->title('SKU'),
             Column::make('nama'),
-            Column::make('harga'),
+            Column::make('harga')
+                ->render("$.fn.dataTable.render.number( '.', ',', 2, 'Rp ' )"),
             Column::make('stok'),
             Column::make('unit_of_material'),
             Column::computed('action')
