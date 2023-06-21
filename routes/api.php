@@ -22,4 +22,7 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
     Route::get('/item', [\App\Http\Controllers\Api\ItemController::class, 'getItem']);
+    Route::post('/transaksi', [\App\Http\Controllers\Api\TransaksiController::class, 'store']);
+    Route::get('/transaksi', [\App\Http\Controllers\Api\TransaksiController::class, 'get']);
+    Route::get('/transaksi/invoice', [\App\Http\Controllers\Api\TransaksiController::class, 'invoice']);
 });
