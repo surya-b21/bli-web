@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('kasir')->controller(App\Http\Controllers\ItemController::class)->prefix('item')->name('item.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::get('/delete/{id}', 'delete')->name('delete');
+    Route::post('/data', 'getData')->name('data');
+});
+
+Route::middleware('superadmin')->controller(App\Http\Controllers\UserController::class)->prefix('user')->name('user.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::get('/delete/{id}', 'delete')->name('delete');
+    Route::post('/data', 'getData')->name('data');
+});
+
+Route::middleware('kasir')->controller(App\Http\Controllers\TransaksiController::class)->prefix('transaksi')->name('transaksi.')->group(function () {
+    Route::get('/', 'index')->name('index');
+});
