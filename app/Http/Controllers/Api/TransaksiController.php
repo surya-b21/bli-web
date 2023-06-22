@@ -14,7 +14,7 @@ class TransaksiController extends Controller
 {
     public function get()
     {
-        $transaksi = Transaksi::where('sort', request('sort'))->get();
+        $transaksi = Transaksi::where('sort', request('sort'))->with('item')->get();
 
         return response()->json($transaksi);
     }
@@ -44,10 +44,14 @@ class TransaksiController extends Controller
             $romawi = $romans[$data->created_at->format('m')];
             $invoice = "INV/" . $romawi . "/" . $data->created_at->format('Y') . "/" . $data->sort;
 
-            array_push($collection, $invoice);
+            $item = [
+                $data->sort => $invoice
+            ];
+
+            array_push($collection, $item);
         }
 
-        dd($collection);
+        return response()->json($collection);
     }
 
     public function store(Request $request)

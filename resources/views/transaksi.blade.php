@@ -19,5 +19,6 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endpush

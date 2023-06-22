@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -63,9 +64,11 @@ class TransaksiDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')
-                ->title('#'),
+                ->title('#')
+                ->searchable(false),
             Column::make('created_at')
-                ->title('Tanggal Penjualan'),
+                ->title('Tanggal Penjualan')
+                ->render('$.fn.dataTable.render.datetime("DD-MM-YYYY")'),
             Column::make('item.sku')
                 ->title('SKU'),
             Column::make('item.nama')
@@ -73,8 +76,10 @@ class TransaksiDataTable extends DataTable
             Column::make('item.unit_of_material')
                 ->title('UoM'),
             Column::make('item.harga')
-                ->title('Harga Sebelum Pajak'),
-            Column::make('harga setelah pajak'),
+                ->title('Harga Sebelum Pajak')
+                ->render("$.fn.dataTable.render.number( '.', ',', 2, 'Rp ' )"),
+            Column::make('harga_setelah_pajak')
+                ->render("$.fn.dataTable.render.number( '.', ',', 2, 'Rp ' )"),
 
         ];
     }
